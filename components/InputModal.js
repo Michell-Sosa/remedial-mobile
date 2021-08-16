@@ -13,14 +13,14 @@ import {
 } from './../styles/appStyles';
 import {AntDesign} from '@expo/vector-icons';
 
-const InputModal = ({modalVisible, setModalvisible, todoInputValue, setTodoInputValue}) => {
+const InputModal = ({modalVisible, setModalVisible, todoInputValue, setTodoInputValue}) => {
    
   const handleCloseModal = () => {
     setModalVisible(false);
   }
 
   const handleSubmit = () => {
-
+      alert('submitted');
   }
 
   return (
@@ -36,12 +36,13 @@ const InputModal = ({modalVisible, setModalvisible, todoInputValue, setTodoInput
             onRequestClose={handleCloseModal}
         >
             <ModalContainer>
-             <ModalIcon>
-                <AntDesign name= 'edit' size={30} color={colors.tertiary}/>
+             <ModalView>
+                 <ModalIcon>
+                 <HeaderTitle>New task</HeaderTitle>
              </ModalIcon>
 
              <StyledInput
-                placeholder='Add a task'
+                placeholder='Add you task here'
                 placeholderTextColor={colors.alternative}
                 selectionColor={colors.secondary}
                 autoFocus={true}
@@ -49,7 +50,21 @@ const InputModal = ({modalVisible, setModalvisible, todoInputValue, setTodoInput
                 value={todoInputValue}
                 onSubmitEditing={handleSubmit}
              />
+
+                  <ModalActionGroup>
+                    <ModalAction color={colors.primary} onPress={handleCloseModal}>
+                    <AntDesign name= 'close' size={28} color={colors.tertiary}/>
+
+                    </ModalAction>
+
+                    <ModalAction color={colors.tertiary} onPress={handleSubmit}>
+                    <AntDesign name= 'check' size={28} color={colors.secondary}/>
+
+                    </ModalAction>
+                  </ModalActionGroup>
+                  </ModalView>
             </ModalContainer>
+
         </Modal>
      </>
     );
