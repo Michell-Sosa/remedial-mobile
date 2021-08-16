@@ -13,15 +13,33 @@ import {
 } from './../styles/appStyles';
 import {AntDesign} from '@expo/vector-icons';
 
-const InputModal = ({modalVisible, setModalVisible, todoInputValue, setTodoInputValue}) => {
+const InputModal = ({modalVisible, setModalVisible, todoInputValue, setTodoInputValue, handleAddTodo, todoToBeEdited, setTodoToBeEdited, handleEditTodo, todos}) => {
    
   const handleCloseModal = () => {
     setModalVisible(false);
-  }
+    setTodoInputValue('');
+    setTodoToBeEdited(null);
+  };
 
   const handleSubmit = () => {
-      alert('submitted');
-  }
+
+      if(!todoToBeEdited) {
+        handleAddTodo({
+          title:  todoInputValue,
+          date: new Date().toUTCString(),
+          key: '${(todos[todos.length-1] && parseInt(todos[todos.lenght -1].key) + 1) || 1 }'
+        });
+      } else {
+          handleEditTodo({
+            title:  todoInputValue,
+            date: todoToBeEdited.date,
+            key: todoToBeEdited.key
+          })
+      }
+
+      
+      setTodoInputValue('');
+  };
 
   return (
       <>
