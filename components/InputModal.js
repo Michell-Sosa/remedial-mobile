@@ -22,7 +22,6 @@ const InputModal = ({modalVisible, setModalVisible, todoInputValue, setTodoInput
   };
 
   const handleSubmit = () => {
-
       if(!todoToBeEdited) {
         handleAddTodo({
           title:  todoInputValue,
